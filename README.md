@@ -1,4 +1,4 @@
-# Experiment-08- Encoders-and-decoders 
+# Experiment-07- Encoders-and-decoders 
 ### AIM: To implement 8 to 3 Encoder and  3to8 Decoder using verilog and validate its outputs
 ### HARDWARE REQUIRED:  – PC, Cyclone II , USB flasher
 ### SOFTWARE REQUIRED:   Quartus prime
@@ -75,62 +75,51 @@ Developed by: E.Kamalesh
 
 RegisterNumber: 212222100019
 
+
+### ENCODER
 ```
-ENCODER
-
-module EX7(a,b,c,d0,d1,d2,d3,d4,d5,d6,d7);
-output a,b,c;
-input d0,d1,d2,d3,d4,d5,d6,d7;
-or(a,d4,d5,d6,d7);
-or(b,d2,d3,d6,d7);
-or(c,d1,d3,d5,d7);
-endmodule
-
-DECODER
-
-module EX7(d0,d1,d2,d3,d4,d5,d6,d7,a,b,c);
-input a,b,c;
-output d0,d1,d2,d3,d4,d5,d6,d7;
-assign d0 = (~a&~b&~c);
-assign d1 = (~a&~b&c);
-assign d2 = (~a&b&~c);
-assign d3 = (~a&b&c);
-assign d4 = (a&~b&~c);
-assign d5 = (a&~b&c);
-assign d6 = (a&b&~c);
-assign d7 = (a&b&c);
+module enc(a0,a1,a2,y0,y1,y2,y3,y4,y5,y6,y7);
+input y0,y1,y2,y3,y4,y5,y6,y7;
+output a0,a1,a2;
+or(a0,y7,y5,y3,y1);
+or(a1,y7,y6,y3,y2);
+or(a2,y7,y6,y5,y4);
 endmodule
 ```
+### DECODER
+```
+module dec (a0,a1,a2,y0,y1,y2,y3,y4,y5,y6,y7);
+input a0,a1,a2;
+output y0,y1,y2,y3,y4,y5,y6,y7;
+wire a0bar,a1bar,a2bar;
+not(a0bar,a0);
+not(a1bar,a1);
+not(a2bar,a2);
+and(y0,a0bar,a1bar,a2bar);
+and(y1,a0,a1bar,a2bar);
+and(y2,a0bar,a1,a2bar);
+and(y3,a0,a1,a2bar);
+and(y4,a0bar,a1bar,a2);
+and(y5,a0,a1bar,a2);
+and(y6,a0bar,a1,a2);
+and(y7,a0,a1,a2);
+endmodule
+```
 
-
-
-
-### RTL LOGIC  
-## ENCODER
-![encoder](https://github.com/kamalesh2509/Experiment-08-Encoders-and-decoders-/assets/120444689/e3a07e4a-8703-452e-8992-e804652fac3d)
-
+## RTL LOGIC  
+### ENCODER
+![244865415-2b24d5eb-5aa8-49e4-a1e1-cedd3e6d1881](https://github.com/kamalesh2509/Experiment-08-Encoders-and-decoders-/assets/120444689/9ed90003-3481-428e-934e-95569c5f30e4)
 ## DECODER
-![decoder](https://github.com/kamalesh2509/Experiment-08-Encoders-and-decoders-/assets/120444689/072881bb-67d4-45cc-93bf-50e820bd8774)
-
-
-
-### TIMING DIGRAMS  
-
-## ENCODER
-![encodert](https://github.com/kamalesh2509/Experiment-08-Encoders-and-decoders-/assets/120444689/a265130a-3e60-409f-af02-a1321f256b9c)
-## DECODER
-![decodert](https://github.com/kamalesh2509/Experiment-08-Encoders-and-decoders-/assets/120444689/0e66e6bb-d47d-4bb7-812c-257203f36761)
-
-
-
-### TRUTH TABLE 
-## ENCODER
-![encodertt](https://github.com/kamalesh2509/Experiment-08-Encoders-and-decoders-/assets/120444689/208fbb3f-3719-4b7e-8c6d-06dc43c87ae0)
-## DECODER
-![decodertt](https://github.com/kamalesh2509/Experiment-08-Encoders-and-decoders-/assets/120444689/e0cd452f-9a7f-4a22-97ac-75658b43b408)
-
-
-
-
-### RESULTS 
+![244865522-fdc0be8f-9d24-457a-bc4b-d8b89b433dc3](https://github.com/kamalesh2509/Experiment-08-Encoders-and-decoders-/assets/120444689/b9e0d9fb-0e1a-4031-8665-bab61d963432)
+## TIMING DIGRAMS  
+### ENCODER
+![244865631-577dd6d9-a4ea-4d36-b475-48494c3faf9a](https://github.com/kamalesh2509/Experiment-08-Encoders-and-decoders-/assets/120444689/fa616c43-e220-43c4-aef1-cba2b5fe565d)
+### DECODER
+![244865825-09841860-9faf-4887-a33e-724909fb44ff](https://github.com/kamalesh2509/Experiment-08-Encoders-and-decoders-/assets/120444689/35ff4eaf-38c8-4148-ac42-e4b91dece408)
+## TRUTH TABLE 
+### ENCODER
+![244865945-ede39c65-e906-479f-8d19-33708741a1de](https://github.com/kamalesh2509/Experiment-08-Encoders-and-decoders-/assets/120444689/230c9a19-beb6-4a76-9be5-eec8155e8719)
+### DECODER
+![244866042-5552d32e-d0bb-4d2c-9d72-286200d1e244](https://github.com/kamalesh2509/Experiment-08-Encoders-and-decoders-/assets/120444689/33650ea0-4bb7-4206-847e-c03ac9035a1f)
+## RESULTS 
 Thus the program to desing encoder and decoder is completed.
